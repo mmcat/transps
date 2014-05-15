@@ -53,7 +53,7 @@ sub usage{
 		"\n",
 		$message,
 #		"Usage: perl transScanffold.pl\n-t <transcriptome file>\n-r <reference file>\n-b <blastx output file>\n"
-		"Usage: perl transScanffold.pl -t <transcriptome file> -b <blastx output file> [options]\n
+		"Usage: ./transps.pl -t <transcriptome file> -b <blastx output file> [options]\n
 Options:
 --per <percentage of overlapping>
 --rate <rate of extention>
@@ -449,7 +449,7 @@ sub scaffold{
 #				print OUT2 $pmap{substr($pepname,1)}, "\n";
 			}
 			else {
-				if($cur_interval->{name} ne ""){
+				if(exists $cur_interval->{name} && $cur_interval->{name} ne ""){
 					print $UNUSE ">",$cur_interval->{name},"@",$pname,"\n";
 					printSeq($UNUSE,$cur_interval->{seq});
 #					print $UNUSE $cur_interval->{seq},"\n";
