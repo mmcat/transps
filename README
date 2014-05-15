@@ -1,0 +1,71 @@
+TransScanffold 1.1.0
+
+Author: Mingming Liu
+
+Contact: mingml@vt.edu
+
+1. Prerequisites
+2. Input
+3. Output
+4. Example
+
+Prerequisites
+=============
+
+NCBI Blast -- Please download and install the NCBI Blast+ 2.2.26 or later version form here by following the instruction.
+
+A reference species -- Protein sequences of a closely related organism.
+
+Perl 5 -- The programming was written in perl. Please have perl 5.12.4 or later version installed.
+
+String::LCSS_XS -- A perl module for finding The longest common substring of two strings. 
+
+Input
+=====
+
+Blastx output -- This is the search results from NCBI BLAST programming BLASTX (Search protein database using a translated nucleotide query). Since you will use your own reference database, the first step for using BLAST tool is to format your databse by using the following commands,
+
+$ makeblastdb -in *.fasta -dbtype prot
+
+Then search the database by using "blastx" command if you installed BLAST successfully,
+
+$ blastx -db <formated database> -query <your transcriptome sequences file> -out <out file> -outfmt 6 -evalue 0.01 -max_target_seqs 20
+
+Transcriptome file -- transcriptome contigs that you are interested in FASTA format.
+
+Output
+======
+
+Mapping -- All the transcriptome sequences will be mapped to a protein sequence of the reference species specified, which is stored at *.map file. the format is as follows,
+>ACYPI24736-PA
+gi|417503984|gb|GACJ01004701.1|	3427	2903	6	205	31.00	200	7e-26	113	3	111
+gi|417503982|gb|GACJ01004703.1|	3427	2903	6	205	31.00	200	7e-26	113	3	111
+gi|417503924|gb|GACJ01004748.1|	2421	1897	6	205	31.00	200	4e-26	113	3	111
+gi|417503991|gb|GACJ01004694.1|	1603	1079	6	205	31.00	200	2e-26	113	3	111
+...
+
+The first line is the description line following ">" symbol. In this case, "ACYPI24736-PA" is the ID of the reference protein sequence. The following lines are matched query transcriptome sequences. From the first column to the last column, they are the name of query sequence, start position of alignment in query, end position of alignment in query, start position of alignment in subject, end position of alignment in subject, pencentage of identical matches, alignment length, expected value, number of mismatches, number of gapopenings, and bit score respectively.
+
+Accepted contigs -- contigs that follows an one-to-one match with a reference sequence, or it turns to an one-to-one match after removing redundancy.
+
+Scaffolding contigs -- contigs that are used for scaffolding.
+
+Unused contigs -- contigs that are not accepted contigs or contigs used for scaffolding and considered as redundancy.
+
+Example
+=======
+
+In command line, you can simply type the command,
+
+$ perl transps.pl -t <transcriptome file> -b <blastx output file> [options]
+
+--per	<percentage of overlapping>
+--rate	<rate of extention>
+--dist	<distance between two scaffoding contigs>
+--evalue	<evalue cutoff >
+
+The first two options are required. Please visite the website (http://bioinformatics.cs.vt.edu/zhanglab/transps/) for details of other options. If you installed everything properiately, and have blastx implemented, please run the example provided in the package by typing the following command to terminal,
+
+$ perl transps.pl -t examples/example.fa -b examples/example.blastx
+
+Once it is correctly done, you will see the outputs files generated in the same directory as the inputed transcriptome file.
