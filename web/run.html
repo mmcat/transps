@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>TransPS</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="form.js">
+ 
+  </script>
+</head>
+  <body>
+  <div id="main">
+     <div id="header">
+     <div id="title">
+     <!-- Name of tool -->
+     <h1><a href="index.html"><strong>TransPS</strong>: Transcriptome Post Scaffolding. </a></h1>
+     
+     <!-- Authors -->
+     <p>Mingming Liu, Zachary N Adelman, Liqing Zhang</p> 
+     
+     <!-- Contact email -->
+     <address>mingml@vt.edu</address>
+     </div>
+     </div>
+  <div class="content">
+   <div class="left">
+     <div class="download">
+     <a href="TransPS1.1.0.tar.gz"><img src="images/download_logo.png" alt="download" width="250"/></a>
+     </div>
+     <h2>Other data</h2>
+     <ul>
+     <li><a href="De_frontalis.tar.gz">De. frontalis</a></li>
+     <li><a href="De_ponderosae.tar.gz">De. ponderosae</a></li>
+     <li><a href="Di_citri.tar.gz">Di. citri</a></li>
+     <li><a href="Ix_ricinus.tar.gz">Ix. ricinus</a></li>
+     </ul>
+     
+     </div>
+  <div class="right">
+  <table>
+  <tr>
+  <td>
+  <form method="post" name="seq_form" id="seq_form" action="submit.php" onsubmit="return validateForm()" enctype="multipart/form-data">
+  Please copy/paste the transcriptome in FASTA format: 
+  <textarea name="seqs" cols="60" rows="20" name="fasta">
+  </textarea>
+  <br>
+  Or alternatively upload your text file up to 20M. <br>
+  <input type="file" id="seq_file" name="seq_file" size="30"/> <br>
+  Also upload the output file from blastx (up to 20M): <input type="checkbox" id="check" name="check" value="exblastx"/>example blastx file<br>
+  <input type="file" id="blastx_file" name="blastx_file" size="30"/> <br>
+  <div class="argu">
+  <a href="#" onClick="javascript:hideShow('argumentsetting');return false;"> Arguments Setting
+  <img id="arrow" src="images/arrow90.png" alt="arrow" border="0"/> </a> <br>
+  </div>
+  <table id="argumentsetting" style="display: none;">
+  <tr><td>evalue</td><td><input type="text" id="evalue" name="evalue" value="1e-5"/></td>
+  <td><a href="#" onClick="javascript:on_help(1);return false;"><img src="images/qmark.png"/></a></td>
+  </tr>
+  <tr><td>overlapping percentage</td><td><input type="text" id="per" name="per" value="0.4"/></td>
+  <td><a href="#" onClick="javascript:on_help(2);return false;"><img src="images/qmark.png"/></a></td>
+  </tr>
+  <tr><td>extention rate</td><td><input type="text" id="rate" name="rate" value="0.1"/></td>
+  <td><a href="#" onClick="javascript:on_help(3);return false;"><img src="images/qmark.png"/></a></td>
+  </tr>
+  <tr><td>scaffolding distance</td><td><input type="text" id="dist" name="dist" value="100"/></td>
+  <td><a href="#" onClick="javascript:on_help(4);return false;"><img src="images/qmark.png"/></a></td>
+  </tr>
+  </table>
+  <input type="submit" value="submit"> 
+  <input type="reset" value="clear">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="button" value="use example data" onclick="fill_example();">
+  </form>
+  </td>
+  </tr>
+  </table>
+  </div>
+   
+  </div>
+  <div class="footer">
+  The website is still under construction...
+  </div>
+  </div>
+  
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>TransPS</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+  <body>
+  <div id="main">
+     <div id="header">
+     <div id="title">
+     <!-- Name of tool -->
+     <h1><a href="#"><strong>TransPS</strong>: Transcriptome Post Scaffolding. </a></h1>
+     
+     <!-- Authors -->
+     <p>Mingming Liu, Zachary N Adelman, Liqing Zhang</p> 
+     
+     <!-- Contact email -->
+     <address>mingml@vt.edu</address>
+     </div>
+     </div>
+  <div class="content">
+     <div class="left">
+     <div class="download">
+     <a href="TransPS1.1.0.tar.gz"><img src="images/download_logo.png" alt="download" width="250"/></a>
+     </div>
+     <h2>Other data</h2>
+     <ul>
+     <li><a href="De_frontalis.tar.gz">De. frontalis</a></li>
+     <li><a href="De_ponderosae.tar.gz">De. ponderosae</a></li>
+     <li><a href="Di_citri.tar.gz">Di. citri</a></li>
+     <li><a href="Ix_ricinus.tar.gz">Ix. ricinus</a></li>
+     </ul>
+     <div>
+     <a href="run.html"><img src="images/online_logo.png" alt="run" width="200"/></a>
+     </div> 
+     
+     </div>
+     <div class="right">
+     <h2>ABOUT</h2>
+     <p><strong>TransPS</strong> is a pipeline for post-processing of pre-assembled transcriptomes using reference based method. 
+     It applies an align-layout-consensus structure, consisting of three major stages. First, query sequences are aligned 
+     with a reference genome. Second, query sequences are ordered based on the alignment 
+     to the reference. Third, non-redundant sequences matched to the same gene of reference genome are scaffolded into one contig. </p>
+     <p>The results show that the post processed transcriptome removed the redundant contigs while having significant higher coverage ratio 
+     than the original transcriptome.</p>
+     <h2>USAGE</h2>
+      		<ul id="pageList">
+                    <li><a href="#sec1">Prerequisites</a></li>
+                    <li><a href="#sec2">Input</a></li>
+                    <li><a href="#sec3">Output</a></li>
+                    <li><a href="#sec4">Example</a></li>
+                    
+                </ul>
+                 <a name="sec1"></a>
+                <h3> Prerequisites </h3>
+                	<p>NCBI Blast -- Please download and install the NCBI Blast+ 2.2.26 or later version form <a href="http://www.ncbi.nlm.nih.gov/guide/all/#downloads_">here </a> by following the <a href="http://www.ncbi.nlm.nih.gov/books/NBK52640">instructions.</a></p>
+                	<p>A reference species -- Protein sequences of a closely related organism.</p>
+                	<p>Perl 5 -- The programming was written in perl. Please have perl 5.12.4 or later version installed. </p>
+                	<p>String::LCSS_XS -- A perl module for finding The longest common substring of two strings. You can find it <a href="http://search.cpan.org/~limaone/String-LCSS_XS-1.2/lib/String/LCSS_XS.pm">here.</a></p>
+                <div><a href="usage.html">read more...</a></div>
+                    
+     <h2>CITATION</h2>
+     If you are going to use TransPS, please cite the following paper: <br/>
+     <p class="cite"><a href="http://www.hindawi.com/journals/cbj/2014/961823/
+	     ">A Transcriptome Post-Scaffolding Method for Assembling High Quality Contigs," Computational Biology Journal, vol. 2014, Article ID 961823, 4 pages, 2014. doi:10.1155/2014/961823</a></p>
+     <h2>CONTACTS</h2>
+     <p>This work was supported by National Institutes of Health via grant AI085091. The author thanks <a href="http://www.ento.vt.edu/people/tenure/adelman-zach/index.html" >Dr. Adelman</a> and <a href="http://people.cs.vt.edu/~lqzhang/" >Dr. Zhang</a> for helpful discussion and comments. We appreciate any feedbacks! Please send comments and suggestions to Mingming Liu at mingml@vt.edu. </p>
+                <div>
+                    <table>
+                        <tr>
+                            <td><img src="images/logo_vt.png" alt="VT" width="250" height="54"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            
+                            <td><img src="images/logo_nih.png" alt="NIH" width="100" height="100"/></td>
+                        </tr>
+                    
+                    </table>
+                </div>
+     
+     </div>
+  </div>
+     
+  </div>
+  </body>
+</html>

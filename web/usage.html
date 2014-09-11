@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>TransPS</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+  <body>
+  <div id="main">
+     <div id="header">
+     <div id="title">
+     <!-- Name of tool -->
+     <h1><a href="index.html"><strong>TransPS</strong>: Transcriptome Post Scaffolding. </a></h1>
+     
+     <!-- Authors -->
+     <p>Mingming Liu, Zachary N Adelman, Liqing Zhang</p> 
+     
+     <!-- Contact email -->
+     <address>mingml@vt.edu</address>
+     </div>
+     </div>
+  <div class="content">
+     <div class="left">
+     <div class="download">
+     <a href="TransPS1.1.0.tar.gz"><img src="images/download_logo.png" alt="download" width="250"/></a>
+     </div>
+     <h2>Other data</h2>
+     <ul>
+     <li><a href="De_frontalis.tar.gz">De. frontalis</a></li>
+     <li><a href="De_ponderosae.tar.gz">De. ponderosae</a></li>
+     <li><a href="Di_citri.tar.gz">Di. citri</a></li>
+     <li><a href="Ix_ricinus.tar.gz">Ix. ricinus</a></li>
+     </ul>
+     
+     <div>
+     <a href="run.html"><img src="images/online_logo.png" alt="run" width="200"/></a>
+     </div>
+     
+     </div>
+     <div class="right">
+     <h2>USAGE</h2>
+      		<ul id="pageList">
+                    <li><a href="#sec1">Prerequisites</a></li>
+                    <li><a href="#sec2">Input</a></li>
+                    <li><a href="#sec3">Output</a></li>
+                    <li><a href="#sec4">Example</a></li>
+   
+                </ul>
+                 <a name="sec1"></a>
+                <h3> Prerequisites </h3>
+                	<p>NCBI Blast -- Please download and install the NCBI Blast+ 2.2.26 or later version form <a href="http://www.ncbi.nlm.nih.gov/guide/all/#downloads_">here </a> by following the <a href="http://www.ncbi.nlm.nih.gov/books/NBK52640">instruction.</a></p>
+                	<p>A reference species -- Protein sequences of a closely related organism.</p>
+                	<p>Perl 5 -- The programming was written in perl. Please have perl 5.12.4 or later version installed. </p>
+                	<p>String::LCSS_XS -- A perl module for finding The longest common substring of two strings. You can find it <a href="http://search.cpan.org/~limaone/String-LCSS_XS-1.2/lib/String/LCSS_XS.pm">here.</a></p>
+                <a name="sec2"></a>
+                <h3> Input </h3>
+                    <p>Blastx output -- This is the search results from NCBI BLAST programming BLASTX (Search protein database using a translated nucleotide query).  Since
+                    you will use your own reference database, the first step for using BLAST tool is to format your databse by using the following commands,</p>
+                    <p class="command">$ makeblastdb -in *.fasta -dbtype prot</p>
+                    <p>Then search the database by using "blastx" command if you installed BLAST successfully,</p>
+                    <p class="command">$ blastx -db &lt;formated database&gt; -query &lt;your transcriptome sequences file&gt; -out &lt;out file&gt; -outfmt 6 -evalue 0.01 -max_target_seqs 20</p>
+		    <p>Transcriptome file -- transcriptome contigs that you are interested in <a href="http://en.wikipedia.org/wiki/FASTA_format">FASTA</a> format.</p>
+                
+                <a  name="sec3"></a>
+                <h3> Output </h3>
+                    <p>Mapping -- All the transcriptome sequences will be mapped to a protein sequence of the reference species specified, which is stored at *.map file. the format is as follows,</p>
+                    <div>
+                    <table border="0">
+                        <tr>
+                            <td>>ACYPI24736-PA</td>
+                        </tr>
+                        <tr>
+                            <td>gi|417503984|gb|GACJ01004701.1|</td><td>3427</td><td>2903</td><td>6</td><td>205</td><td>31.00</td><td>200</td><td>7e-26</td><td>113</td><td>3</td><td>111</td>
+                        </tr>
+                        <tr>
+                            <td>gi|417503982|gb|GACJ01004703.1|</td><td>3427</td><td>2903</td><td>6</td><td>205</td><td>31.00</td><td>200</td><td>7e-26</td><td>113</td><td>3</td><td>111</td>
+                        </tr>
+                        <tr>
+                            <td>gi|417503924|gb|GACJ01004748.1|</td><td>2421</td><td>1897</td><td>6</td><td>205</td><td>31.00</td><td>200</td><td>4e-26</td><td>113</td><td>3</td><td>111</td>
+                        </tr>
+                        <tr>
+                            <td>gi|417503991|gb|GACJ01004694.1|</td><td>1603</td><td>1079</td><td>6</td><td>205</td><td>31.00</td><td>200</td><td>2e-26</td><td>113</td><td>3</td><td>111</td>
+                        </tr>
+                        <tr><td>...</td> </tr>
+                        
+                    </table>
+                    </div>
+                    <p>The first line is the description line following ">" symbol. In this case, "ACYPI24736-PA" is the ID of the reference protein sequence. The following lines
+                    are matched query transcriptome sequences. From the first column to the last column, they are the name of query sequence, start position of alignment in query, end position of alignment in query, start position of alignment in subject, end position of alignment in subject, pencentage of identical matches, alignment length, expected value, number of mismatches, number of gapopenings, and bit score respectively.</p>
+                    <p>Accepted contigs -- contigs that follows an one-to-one match with a reference sequence, or it turns to an one-to-one match after removing redundancy. </p>
+		    <p>Scaffolding contigs -- contigs that are used for scaffolding.</p>
+		    <p>Unused contigs -- contigs that are not accepted contigs or contigs used for scaffolding and considered as redundancy.</p>
+                
+                <a  name="sec4"></a>
+                <h3> Example </h3>
+                    <p>In command line, you can simply type the command,</p>
+                    <p class="command">$ perl transps.pl -t &lt;transcriptome file&gt; -b &lt;blastx output file&gt; [options] <p/>
+                    		       <table>
+                    		       <tr><td>--per</td><td>&lt;percentage of overlapping&gt;</td></tr>
+                    		       <tr><td>--rate</td><td>&lt;rate of extention&gt; </td></tr>
+                    		       <tr><td>--dist</td><td>&lt;distance between two scaffoding contigs&gt; </td></tr>
+				       <tr><td>--evalue</td><td>&lt;evalue cutoff &gt;</td></tr>
+				       </table>
+                    <p>The first two options are required. Please see <a href="run.html">here</a> for the detail of other options. 
+                    If you installed everything properiately, and have blastx implemented, please run the example provided
+                    in the package by typing the following command to terminal,</p>
+                        <p class="command">$ perl transps.pl -t examples/example.fa -b examples/example.blastx </p>
+                    <p>Once it is correctly done, you will see the outputs files generated in the same directory as the inputed transcriptome file.</p>
+              
+            
+     
+     </div>
+  </div>
+     
+  </div>
+  </body>
+</html>
