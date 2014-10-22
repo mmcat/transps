@@ -233,7 +233,7 @@ sub scaffold{
 					"hitright"=>$array[4],
 					"perid"=>$array[5],
 					"evalue"=>$array[7],
-					"score"=>$array[11],
+					"score"=>$array[10],
 					"seq"=>$tmap{$array[0]});
 			if($segment{queryleft} !~ /^[0-9]/ || $segment{evalue} > $evalue || $segment{queryleft}>$segment{queryright}){
 #				if($segment{name} eq ""){
